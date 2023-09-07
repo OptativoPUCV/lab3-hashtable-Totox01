@@ -118,11 +118,16 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-  if (map == NULL || map->size == 0 || map->buckets == NULL || map->buckets[0] == NULL){
+  if (map == NULL || map->size == 0 || map->buckets == NULL){
     return NULL;
   }
+  for (int i = 0; i > map->size; i++){
+    if(map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+      return map->buckets[i];
+    }
+  }
 
-  return map->buckets[0]->value;
+  return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
