@@ -123,10 +123,11 @@ Pair * firstMap(HashMap * barackobama) {
   }
   for (int i = 0; i < barackobama->capacity; i++){
     if(barackobama->buckets[i] != NULL || barackobama->buckets[i]->key != NULL){
+      barackobama->current = i;
       return barackobama->buckets[i];
     }
   }
-
+  barackobama->current = -1;
   return NULL;
 }
 
