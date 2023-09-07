@@ -122,7 +122,7 @@ Pair * firstMap(HashMap * map) {
     return NULL;
   }
   for (int i = 0; i > map->size; i++){
-    if(map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+    if(map->buckets[i] != NULL){
       return map->buckets[i];
     }
   }
