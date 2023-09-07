@@ -41,14 +41,18 @@ int is_equal(void* key1, void* key2){
 
 void insertMap(HashMap * map, char * key, void * value) {
   long index = hash(key, map->capacity);
+  
   while(map->buckets[index] != NULL && map->buckets[index]->key != NULL){
-    index = (index + 1) % map->capacity; //metodo lineal
+    index = (index + 1) % map->capacity; //metodo lineal de resolucion de colisiones
   }
+  
   Pair * newPair = createPair(key, value);
   if (newPair == NULL){
+    //impresion de error porque createPair no la tiene
     printf("Error al asignar memoria a un nuevo par");
     return;
   }
+  
   map->buckets[index] = newPair;
   map->size++;
   map->current = index;
@@ -67,18 +71,22 @@ HashMap * createMap(long capacity) {
     printf("Error al asignar memoria al nuevo mapa");
     return NULL;
   }
+  
   map->buckets = (Pair **)malloc(sizeof(Pair *) * capacity);
   if (map->buckets == NULL){
     printf("Error al asignar memoria al arreglo de buckets");
     free(map);
     return NULL;
   }
+  
   map->size = 0;
   map->capacity = capacity;
   map->current = -1;
+  
   for (int i = 0; i < capacity; i++){
     map->buckets[i] = NULL;
   }
+  
   return map;
 }
 
@@ -88,9 +96,20 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-
-
-    return NULL;
+  long index = hash(key, map->capacity);
+  long initialIndex = index;
+  while (map->buckets[index] != NULL){
+    if (map->buckets[index]->key != NULL && strcmp(map->buckets[index]->key, key) == 0){
+      map->current = index;
+      return map->buckets[index];
+    }
+    index = (index + 1) % map->capacity;
+    if (index == initialIndex){
+      break;
+    }
+  }
+  map->current = -1;
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
