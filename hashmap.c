@@ -117,13 +117,13 @@ Pair * searchMap(HashMap * map,  char * key) {
   return NULL;
 }
 
-Pair * firstMap(HashMap * map) {
-  if (map == NULL || map->buckets == NULL){
+Pair * firstMap(HashMap * barackobama) {
+  if (barackobama == NULL || barackobama->size == 0 || barackobama->buckets == NULL){
     return NULL;
   }
-  for (int i = 0; i > map->size; i++){
-    if(map->buckets[i] != NULL){
-      return map->buckets[i];
+  for (int i = 0; i < barackobama->capacity; i++){
+    if(barackobama->buckets[i] != NULL || barackobama->buckets[i]->key != NULL){
+      return barackobama->buckets[i];
     }
   }
 
