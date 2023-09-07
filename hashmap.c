@@ -90,8 +90,11 @@ HashMap * createMap(long capacity) {
   return map;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
+void eraseMap(HashMap * map,  char * key) {
   long index = hash(key, map->capacity);
+  if (key == NULL || map->buckets[index] == NULL){
+    return;
+  }
   map->buckets[index]->key = NULL;
   map->size--;
 }
