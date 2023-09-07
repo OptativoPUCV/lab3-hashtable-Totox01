@@ -22,3 +22,14 @@ Thu 07 Sep 2023 07:01:50 PM UTC:
  tests:  8|3
 total_score: 40/70
 356b8b1
+Thu 07 Sep 2023 07:02:35 PM UTC: 
+ hashmap.c | 1 +
+ 1 file changed, 1 insertion(+)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:96:13: error: operation on ‘map->size’ may be undefined [-Werror=sequence-point]
+   96 |   map->size = map->size--;
+      |   ~~~~~~~~~~^~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+bbfddb3
