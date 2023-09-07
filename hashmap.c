@@ -40,8 +40,18 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
-
-
+  long index = hash(key, map->capacity);
+  while(map->buckets[index] != NULL && map->buckets[index]->key != NULL){
+    index = (index + 1) % map->capacity; //metodo lineal
+  }
+  Pair * newPair = createPair(key, value);
+  if (newPair == NULL){
+    printf("Error al asignar memoria a un nuevo par");
+    return;
+  }
+  map->buckets[index] = newPair;
+  map->size++;
+  map->current = index;
 }
 
 void enlarge(HashMap * map) {
