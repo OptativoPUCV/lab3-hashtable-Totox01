@@ -91,10 +91,11 @@ HashMap * createMap(long capacity) {
 }
 
 void eraseMap(HashMap * map,  char * key) {
-  if (key == NULL){
+  if (key == NULL || map == NULL){
     return;
   }
   Pair* aux = searchMap(map,  key);
+  if(aux == NULL) return;
   aux->key = NULL;
 
   map->size--;
