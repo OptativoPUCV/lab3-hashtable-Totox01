@@ -33,3 +33,13 @@ hashmap.c:96:13: error: operation on ‘map->size’ may be undefined [-Werror=s
 cc1: all warnings being treated as errors
 Compilation failed
 bbfddb3
+Thu 07 Sep 2023 07:03:01 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:96:20: error: expected identifier before ‘&’ token
+   96 |   map->size = map->&size--;
+      |                    ^
+Compilation failed
+36ff7da
